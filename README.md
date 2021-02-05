@@ -1,0 +1,1 @@
+Skeleton for the registration system.
