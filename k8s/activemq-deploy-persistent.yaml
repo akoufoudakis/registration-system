@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: broker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: broker
+  template:
+    metadata:
+      labels:
+        app: broker
+    spec:
+      containers:
+        - name: broker
+          image: vromero/activemq-artemis:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 61616
+            - containerPort: 8161
+          envFrom:
+            - configMapRef:
+                name: activemq-config
+          volumeMounts:
+            - name: activemq-persistence
+              mountPath: /var/lib/artemis/data
+              readOnly: false
+      volumes:
+        - name: activemq-persistence
+          persistentVolumeClaim:
+            claimName: activemq-pvc

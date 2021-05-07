@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: activemq-config
+  labels:
+    app: broker
+data:
+  ARTEMIS_USERNAME: admin
+  ARTEMIS_PASSWORD: admin12#

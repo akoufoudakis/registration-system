@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-cm
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: resultsdb
+  POSTGRES_USERNAME: postgres
+  POSTGRES_PASSWORD: postgres

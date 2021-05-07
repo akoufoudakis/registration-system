@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: activemq-pv
+  labels:
+    app: broker
+spec:
+  storageClassName: "local-path"
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/opt/minikube/manning/activemq"

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: outbound-http-jms
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: outbound-http-jms
+    template:
+      metadata:
+        labels:
+          app: outbound-http-jms
+      spec:
+        containers:
+          - name: outbound-http-jms
+            image: camel-inbound-jms-http
+            imagePullPolicy: Never
+            env:
+              - name: ACTIVEMQ_HOST
+                value: "broker"
+              - name: ACTIVEMQ_PORT
+                value: "61616"
+              - name: ACTIVEMQ_USER
+                value: "admin"
+              - name: ACTIVEMQ_PASS
+                value: "admin12#"
+            ports:
+              - containerPort: 8080
